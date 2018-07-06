@@ -28,6 +28,7 @@ def killtally(players):
         d.results()
         print('======================')
 
+
 def get_games_from_player_name(name):
     """
     lookup all games played by the name player. return the player object.
@@ -36,6 +37,7 @@ def get_games_from_player_name(name):
     """
     players = api.players().filter(player_names=['NZWookie'])
     return players
+
 
 def store_match_id(players):
     """
@@ -46,6 +48,7 @@ def store_match_id(players):
     for match in players[0].matches:
         d.store_match_id(match)
 
+
 def lookup_match_id(id):
     """
 
@@ -54,6 +57,7 @@ def lookup_match_id(id):
     """
     match = api.matches().get(id)
     return match
+
 
 def store_names_from_match(matchobj):
     """
@@ -64,8 +68,8 @@ def store_names_from_match(matchobj):
     for id in match.rosters:
         d.store_name_match(id.id, id.participants[0].name)
 
-test = api.samples().get()
 
+test = api.samples().get()
 games_played = get_games_from_player_name("NZWookie")
 store_match_id(games_played)
 ids = d.return_match_ids()
@@ -77,4 +81,3 @@ for a in names:
     games_played = get_games_from_player_name(a[0])
     store_match_id(games_played)
 print(d.return_player_names())
-#killtally(players)
